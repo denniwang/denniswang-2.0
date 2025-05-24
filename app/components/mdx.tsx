@@ -49,8 +49,19 @@ function RoundedImage(props) {
 }
 
 function Code({ children, ...props }) {
-  let codeHTML = highlight(children)
+  const normalizedCode = children.toString().trim()
+  let codeHTML = highlight(normalizedCode)
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+}
+
+function CodeBlock({ children, ...props }) {
+  const code = children.toString().replace(/\n$/, '') // Remove trailing newline
+  let codeHTML = highlight(code)
+  return (
+    <pre>
+      <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+    </pre>
+  )
 }
 
 function slugify(str) {
@@ -96,6 +107,7 @@ let components = {
   Image: RoundedImage,
   a: CustomLink,
   code: Code,
+  pre: CodeBlock,
   Table,
 }
 

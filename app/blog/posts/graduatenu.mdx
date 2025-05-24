@@ -1,0 +1,69 @@
+---
+title: "Every Husky deserves a clear path to graduation."
+publishedAt: "2024-05-24"
+summary: "My journey @ GraduateNU and how it works"
+---
+
+## GraduateNU
+
+I joined Sandbox @ Northeastern in the fall of 2024 because I wanted to use apply my React experience into an actual project people used. This opportunity manifested itself in the form of [GraduateNU](https://graduatenu.com/), Sandbox's answer to Northeastern's painfully unintuitive and slow degree audit system.
+
+## How is it intuitive?
+
+Compared to the slow degree audit system offered by Northeastern Uachieve, the GraduateNU platform offers a much smoother user interface that lets the users immediately know if a course is counting towards a requirement. We also allow users to easily change the major, concentration, and minor with the exact same plan of study so that Huskies that are considering changing their academic direction can easily compare the different options. While both websites offer drag and drop functionality, the layout of the drag and drop boxes and the ability to search up courses is much more useful for students that want all their information in a single page.
+
+<Image src="/graduatenu/graduate-fast.gif" width={1000} height={1000} />
+
+## How is it fast?
+
+In the demo below, we can see Uachieve take 10+ seconds to validate a change in the plan, whereas in GraduateNU, we gradually validate changes AS they are made to the plan of study instead of multiple changes at once, making the process significantly shorter.
+
+<Image src="/graduatenu/uachieve-slow.gif" width={1000} height={1000} />
+
+Furthermore, our web application actually just has all the necessary data for all major requirements inside the app itself, so we are not relying on another intermediary between the frontend and backend to fetch course requirements.
+
+## How can I trust this site?
+
+We scrape degree, concentration, minor, and template plan requirements directly from the [Northeastern Academic Catalog](https://catalog.northeastern.edu/). We are still vigorously testing the validation algorithm (we don't know how all 400+ majors work), so if you spot any mistakes, please fill out the [feedback form](https://forms.gle/uXDfLFWvgCiYcqgf9) or email me at wang.yicheng4@northeastern.edu so we can continue to make GraduateNU better!
+
+## Ok.. so what did you do?
+
+A feature I had the pleasure of working on in the past semester is template plans. Along with every major, the Northeastern degree catalog also offers a suggested plan of study for the major, based on the number of coops and when said coops take place.
+
+I felt confident that I could take on this task because we already had an impressive scraping system set up that can scrape 400+ majors, and I knew that the plan of study was just a page away, so I just needed to add something to the end of the major scraper url to reach the plan of study.
+
+Once I came upon this page, I saved a version of the HTML as a file on my computer and fed it to claude so it can give me a framework to essentially pull all the important course information from the website. After a couple iterations of manual testing and tinkering with the algorithm, I was able to consistently pull the courses required.
+
+For example, the information we can scrape from [this page](https://catalog.northeastern.edu/archive/2021-2022/undergraduate/arts-media-design/architecture/architectural-studies-design-bs/#planofstudytext) would look like this:
+
+```
+{
+  "Sample Four Years, Two Co-ops in Summer 2/Fall": {
+    "Year 1": {
+      "Fall": [
+        "ARTF 1000",
+        "ARCH 1310",
+        "ARTF 1122",
+        "ARTG 1250",
+        "ENGW 1111"
+      ],
+      "Spring": [
+        "ARCH 1110",
+        "ARCH 1120"
+      ]
+    },
+    "Year 2": {
+```
+
+With this information, I replicated a similar process of parsing these requirements into an actual plan object that we can use on GraduateNU to represent a student's plan, so when they click the checkmark to use the recommended template, we populate their empty new plan with the template and it shows up on the frontend.
+
+<Image src="/graduatenu/graduate-checkmark.png" width={1000} height={1000} />
+<Image src="/graduatenu/template.png" width={1000} height={1000} />
+
+My idea is that this will help new students save some time and visualize their 4 year plan faster.
+
+## Ending note
+
+Ready to experience the difference? Check out [GraduateNU](https://graduatenu.com/) or our sister project [SearchNU](https://search2-beta.vercel.app/). Found a bug or have feedback? Let me know at [wang.yicheng4@northeastern.edu](mailto:wang.yicheng4@northeastern.edu) or fill out our [feedback form](https://forms.gle/uXDfLFWvgCiYcqgf9).
+
+Because every student deserves a clear path to graduation.
