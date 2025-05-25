@@ -53,15 +53,21 @@ function extractTextContent(children: React.ReactNode): string {
     return children;
   }
 
+  if (typeof children === 'number') {
+    return String(children);
+  }
+
   if (React.isValidElement(children)) {
-    return extractTextContent(children.props.children || '');
+    // Safe access to props.children
+    const props = children.props as any;
+    return extractTextContent(props.children || '');
   }
 
   if (Array.isArray(children)) {
     return children.map(extractTextContent).join('');
   }
 
-  return String(children);
+  return String(children || '');
 }
 
 function Code({ children, ...props }) {
