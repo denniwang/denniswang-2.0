@@ -1,0 +1,104 @@
+---
+title: "CS4400: Programming Languages"
+publishedAt: "2025-05-24"
+summary: "From Lambda Calculus to monads - how theoretical foundations changed my perspective on programming"
+---
+
+## When Theory Meets Practice
+
+Taking CS4400 Programming Languages this semester completely shifted how I think about code. I thought I understood programming after years of React and JavaScript, but Professor Holtzen's course showed me I was only seeing the surface. The real magic happens in the mathematical foundations that most programmers never learn.
+
+## Module 1: Lambda Calculus - The DNA of Programming
+
+The course opened with something I'd heard whispered about but never really understood: the Lambda Calculus. Turns out, almost every programming language you've ever used traces back to this mathematical system created in the 1930s.
+
+We started with a simple calculator language, then gradually built up to understanding syntax and semantics formally. The breakthrough moment came when we learned about substitution and how variables actually work under the hood.
+
+```racket
+(λ (x) (+ x 1))
+```
+
+The mind-bender was Church Encoding - representing numbers, booleans, and data structures using only functions. Zero is `(λ f. λ x. x)`, one is `(λ f. λ x. f x)`. It's like discovering that the entire universe of computation can be built from a single, elegant concept.
+
+We explored both big-step and small-step semantics, learning how to formally describe what it means for a program to "run." This wasn't just academic exercise - understanding these evaluation strategies helps you debug performance issues and predict program behavior.
+
+## Module 2: Types - The Safety Net You Never Knew You Needed
+
+After building up intuition with untyped systems, we dove into type theory. This module was a revelation for someone who's spent years in JavaScript's wild west of dynamic typing.
+
+Starting with simple types, we built increasingly sophisticated type checkers. The Simply-Typed Lambda Calculus showed me why TypeScript exists and why it catches so many bugs that slip through in plain JavaScript.
+
+```typescript
+// This makes so much more sense now 
+function compose<A, B, C>(f: (b: B) => C, g: (a: A) => B): (a: A) => C {
+  return (x: A) => f(g(x));
+}
+```
+
+But the real magic happened with parametric polymorphism and System-F. Learning how generic types work mathematically made me understand why certain patterns in React (like higher-order components) feel so natural - they're expressions of deep mathematical principles.
+
+Subtyping was another eye-opener. Understanding covariance and contravariance finally explained why certain TypeScript errors that seemed arbitrary actually make perfect sense from a type safety perspective.
+
+## Module 3: Control Flow and Effects - Taming Complexity
+
+This module broke my brain in the best way possible. We started with tail form and continuations - concepts that sound academic but have direct applications in modern web development.
+
+Continuation-passing style (CPS) initially felt like mental gymnastics, but then Professor Holtzen showed us how it relates to callbacks and async/await in JavaScript. Suddenly, the Promise chain hell I'd experienced in React projects made theoretical sense.
+
+```typescript
+// This callback pattern...
+getData(id, (data) => {
+  processData(data, (result) => {
+    saveResult(result, (success) => {
+     console.log('Done!');
+    });
+  });
+});
+
+// ...is actually continuation-passing style!
+```
+
+Effect handlers were the conceptual leap that tied everything together. Learning how to formally model side effects helped me understand why functional programming advocates are so passionate about pure functions and immutability.
+
+Then came monads. The infamous monads that every programmer jokes about not understanding. After working through the mathematical foundations, they clicked. Monads aren't mystical - they're just a pattern for composing computations with context. The Maybe monad? That's just safe null handling. The IO monad? Controlled side effects.
+
+## Module 4: The Machine Beneath - Abstract Machines and Memory
+
+Moving from mathematical abstractions to concrete implementations, we studied abstract machines: CK, CEK, and CESK machines. These aren't real hardware, but mathematical models that show how high-level languages actually execute.
+
+Understanding the CEK machine (Control, Environment, Kontinuation) finally made me appreciate what's happening when V8 runs my JavaScript. The environment tracks variable bindings, control tracks what to evaluate next, and kontinuations handle the call stack.
+
+Memory management suddenly made sense too. Garbage collection isn't magic - it's a systematic approach to tracking reachability in the heap. Understanding this helps explain React's performance optimizations and why certain patterns cause memory leaks.
+
+## Module 5: The Cutting Edge - Probabilistic Programming
+
+The final module introduced probabilistic programming, which sounds like science fiction but is becoming increasingly important in AI and machine learning. We learned how to embed probability distributions into programming languages, creating programs that can reason under uncertainty.
+
+This connected back to monads in a beautiful way - probability distributions form a monad, which means we can compose uncertain computations elegantly.
+
+## The Transformation
+
+What started as an academic requirement became a fundamental shift in how I approach programming. Every React component I write now, I think about its type signature. Every callback I create, I see the continuation. Every state management pattern, I recognize the monad.
+
+The theoretical foundations don't just make you a better programmer - they make you a different kind of programmer. One who understands not just how to make code work, but why it works the way it does.
+
+## Practical Applications
+
+This knowledge directly impacts my work on projects like GraduateNU:
+
+- **Type Safety**: Understanding parametric polymorphism helps me design better React component APIs
+- **State Management**: Monadic patterns inform how I handle complex application state
+- **Performance**: Knowing evaluation strategies helps me optimize rendering and data flow
+- **Architecture**: Continuation-passing style influences how I structure async operations
+
+## The Bigger Picture
+
+CS4400 taught me that programming languages aren't just tools - they're mathematical structures with deep theoretical foundations. Every syntax choice, every type system, every evaluation strategy reflects decades of research into how humans and machines can communicate effectively.
+
+This perspective makes me more thoughtful about technology choices. When I evaluate a new framework or language, I don't just ask "Does it work?" I ask "What mathematical principles does it embody? How do its abstractions help or hinder clear thinking?"
+
+That's the real value of studying programming language theory. It doesn't just make you better at using languages - it makes you better at thinking about computation itself.
+
+---
+
+_Want to dive deeper into these concepts? Professor Holtzen's [course notes](https://pages.github.khoury.northeastern.edu/sholtzen/cs4400-spr25-notes/notes/index.html) are an excellent resource for anyone interested in the mathematical foundations of programming._

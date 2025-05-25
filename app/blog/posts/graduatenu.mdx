@@ -4,40 +4,36 @@ publishedAt: "2024-05-24"
 summary: "My journey @ GraduateNU and how it works"
 ---
 
-## GraduateNU
+## The Problem That Started It All
 
-I joined Sandbox @ Northeastern in the fall of 2024 because I wanted to use apply my React experience into an actual project people used. This opportunity manifested itself in the form of [GraduateNU](https://graduatenu.com/), Sandbox's answer to Northeastern's painfully unintuitive and slow degree audit system.
+Picture this: you're a freshman at Northeastern, staring at a blank degree audit system, wondering how you're supposed to navigate four years of coursework without losing your mind. You open UArchieve, Northeastern's official degree planning tool, and immediately hit a wall. The interface feels like it was designed in 2005, course validation takes 10+ seconds per change, and figuring out what classes you actually need feels like solving a puzzle with half the pieces missing.
+This was my reality before I discovered there had to be a better way.
 
-## How is it intuitive?
+## Finding My Purpose at Sandbox
 
-Compared to the slow degree audit system offered by Northeastern Uachieve, the GraduateNU platform offers a much smoother user interface that lets the users immediately know if a course is counting towards a requirement. We also allow users to easily change the major, concentration, and minor with the exact same plan of study so that Huskies that are considering changing their academic direction can easily compare the different options. While both websites offer drag and drop functionality, the layout of the drag and drop boxes and the ability to search up courses is much more useful for students that want all their information in a single page.
+I joined Sandbox @ Northeastern in the fall of 2024 because I wanted to apply my React experience to something that actually mattered. I was tired of building todo apps and portfolio sites that only I would ever use. I wanted to create something that would genuinely improve students' lives, something that solved a real problem I experienced myself.
+That opportunity manifested itself in the form of GraduateNU, Sandbox's answer to Northeastern's painfully unintuitive and slow degree audit system. When I first heard about the project, I knew this was exactly the kind of impact-driven work I'd been searching for.
+
+## Building Something Students Actually Want to Use
+
+The difference between GraduateNU and UArchieve isn't just technical—it's philosophical. While UArchieve treats degree planning like a bureaucratic checkbox exercise, we designed GraduateNU around how students actually think and plan.
 
 <Image src="/graduatenu/graduate-fast.gif" width={1000} height={1000} />
-
-## How is it fast?
-
-In the demo below, we can see Uachieve take 10+ seconds to validate a change in the plan, whereas in GraduateNU, we gradually validate changes AS they are made to the plan of study instead of multiple changes at once, making the process significantly shorter.
-
+Our platform offers an immediately intuitive user interface that gives instant feedback. When you drag a course into a semester, you know immediately whether it counts toward your requirements. No waiting, no second-guessing, no confusion. We also built in the ability to easily switch majors, concentrations, and minors while keeping your entire plan intact, so students exploring different academic paths can compare options side-by-side without starting from scratch.
+The drag-and-drop functionality might look similar to UArchieve on the surface, but the devil is in the details. Our layout prioritizes getting all your information on a single screen, with powerful search functionality that actually helps you find the courses you need. Every design decision was made with the student experience in mind.
+## Speed That Actually Matters
+The performance difference is staggering. While UArchieve forces you to wait 10+ seconds to validate any change to your plan, GraduateNU validates changes instantly as you make them. We don't batch validation requests or rely on slow external APIs—we built our system to have all the necessary data for major requirements directly in the app.
 <Image src="/graduatenu/uachieve-slow.gif" width={1000} height={1000} />
-
-Furthermore, our web application actually just has all the necessary data for all major requirements inside the app itself, so we are not relying on another intermediary between the frontend and backend to fetch course requirements.
-
-## How can I trust this site?
-
-We scrape degree, concentration, minor, and template plan requirements directly from the [Northeastern Academic Catalog](https://catalog.northeastern.edu/). We are still vigorously testing the validation algorithm (we don't know how all 400+ majors work), so if you spot any mistakes, please fill out the [feedback form](https://forms.gle/uXDfLFWvgCiYcqgf9) or email me at wang.yicheng4@northeastern.edu so we can continue to make GraduateNU better!
-
-## Ok.. so what did you do?
-
-A feature I had the pleasure of working on in the past semester is template plans. Along with every major, the Northeastern degree catalog also offers a suggested plan of study for the major, based on the number of coops and when said coops take place.
-
-I felt confident that I could take on this task because we already had an impressive scraping system set up that can scrape 400+ majors, and I knew that the plan of study was just a page away, so I just needed to add something to the end of the major scraper url to reach the plan of study.
-
-Once I came upon this page, I saved a version of the HTML as a file on my computer and fed it to claude so it can give me a framework to essentially pull all the important course information from the website. After a couple iterations of manual testing and tinkering with the algorithm, I was able to consistently pull the courses required.
-
-For example, the information we can scrape from [this page](https://catalog.northeastern.edu/archive/2021-2022/undergraduate/arts-media-design/architecture/architectural-studies-design-bs/#planofstudytext) would look like this:
-
+This architectural decision means we're not dependent on intermediary services between our frontend and backend. When you move a course, the validation happens immediately because all the logic and data are already there, waiting. It's the difference between having a conversation and waiting for letters in the mail.
+## Building Trust Through Transparency
+The most important question students ask us is: "How can I trust this site with my academic future?" It's a fair question, and one we take seriously.
+We scrape degree, concentration, minor, and template plan requirements directly from the Northeastern Academic Catalog, the same official source that UArchieve uses. The difference is in how we present and validate that information. We're still rigorously testing our validation algorithm across all 400+ majors because we know that even small mistakes can have big consequences for students.
+If you spot any discrepancies, we've made it easy to report them through our feedback form or by emailing me directly at wang.yicheng4@northeastern.edu. We're committed to continuous improvement because we know this tool is only valuable if it's accurate.
+## My Deep Dive: Template Plans That Actually Help
+The feature I'm most proud of working on is template plans. Here's the thing that many students don't know: alongside every major, Northeastern's degree catalog includes suggested four-year roadmaps. These plans account for different co-op schedules and provide a clear pathway from freshman year to graduation. The problem? They were buried in the catalog where most students never found them.
+I saw an opportunity to surface this hidden treasure. We already had an impressive scraping system pulling requirements for 400+ majors, and I realized the template plans were just one URL modification away. What seemed like a straightforward addition turned into a fascinating technical challenge.
+After identifying the template plan pages, I saved sample HTML files and worked with Claude to develop a parsing framework. The raw HTML was messy and inconsistent, but through several iterations of testing and algorithm refinement, I cracked the code. What started as chaotic web pages became clean, structured data:
 ```
-{
   "Sample Four Years, Two Co-ops in Summer 2/Fall": {
     "Year 1": {
       "Fall": [
@@ -53,17 +49,14 @@ For example, the information we can scrape from [this page](https://catalog.nort
       ]
     },
     "Year 2": {
-```
-
-With this information, I replicated a similar process of parsing these requirements into an actual plan object that we can use on GraduateNU to represent a student's plan, so when they click the checkmark to use the recommended template, we populate their empty new plan with the template and it shows up on the frontend.
-
-<Image src="/graduatenu/graduate-checkmark.png" width={1000} height={1000} />
-<Image src="/graduatenu/template.png" width={1000} height={1000} />
-
-My idea is that this will help new students save some time and visualize their 4 year plan faster.
+      // ... continues for all four years
+    }
+  }
+  ```
+The real magic happens on the frontend. Students can now click a simple checkmark to instantly populate their entire four-year plan with their major's recommended template. No more staring at blank semesters wondering what comes next.
+<Image src="/graduatenu/graduate-checkmark.png" alt="graduate checkmark screenshot"   width={1000} height={1000} />
+<Image src="/graduatenu/template.png" alt="graduate template screenshot" width={1000} height={1000} />
 
 ## Ending note
 
-Ready to experience the difference? Check out [GraduateNU](https://graduatenu.com/) or our sister project [SearchNU](https://search2-beta.vercel.app/). Found a bug or have feedback? Let me know at [wang.yicheng4@northeastern.edu](mailto:wang.yicheng4@northeastern.edu) or fill out our [feedback form](https://forms.gle/uXDfLFWvgCiYcqgf9).
-
-Because every student deserves a clear path to graduation.
+Ready to experience degree planning that actually works? Check out GraduateNU or our sister project SearchNU. Found a bug or have feedback? Let me know at wang.yicheng4@northeastern.edu or fill out our feedback form.
