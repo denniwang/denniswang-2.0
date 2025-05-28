@@ -12,30 +12,38 @@ Taking CS4400 Programming Languages this semester completely shifted how I think
 
 The course opened with something I'd heard whispered about but never really understood: the Lambda Calculus. Turns out, almost every programming language you've ever used traces back to this mathematical system created in the 1930s.
 
-We started with a simple calculator language, then gradually built up to understanding syntax and semantics formally. The breakthrough moment came when we learned about substitution and how variables actually work under the hood.
+We started with a simple calculator language, then gradually built up to understanding syntax (what the symbols are) and semantics (what the symbols mean) formally.
+
+This right here is a simple lambda function that is initilalized with the lambda character λ and the parameters (x) and what we are going to do to it (add x and 1).
 
 ```racket
 (λ (x) (+ x 1))
 ```
 
-The mind-bender was Church Encoding - representing numbers, booleans, and data structures using only functions. Zero is `(λ f. λ x. x)`, one is `(λ f. λ x. f x)`. It's like discovering that the entire universe of computation can be built from a single, elegant concept.
+Ok, now instead of thinking about variables as numbers or booleans, we can also use these FUNCTIONS as variables. The mind-bender was Church Encoding - representing numbers, booleans, and data structures using only functions. Zero is `(λ f. λ x. x)`, one is `(λ f. λ x. f x)`. It's like discovering that the entire universe of computation can be built from a single, elegant concept.
 
 We explored both big-step and small-step semantics, learning how to formally describe what it means for a program to "run." This wasn't just academic exercise - understanding these evaluation strategies helps you debug performance issues and predict program behavior.
 
 ## Module 2: Types - The Safety Net You Never Knew You Needed
 
-After building up intuition with untyped systems, we dove into type theory. This module was a revelation for someone who's spent years in JavaScript's wild west of dynamic typing.
+After building up intuition with untyped systems, we dove into type theory. Types basically tell you what you're looking at on screen and it let's you build complex programs that can expect a certain type of input. This lets us write better and safer code.
 
-Starting with simple types, we built increasingly sophisticated type checkers. The Simply-Typed Lambda Calculus showed me why TypeScript exists and why it catches so many bugs that slip through in plain JavaScript.
+Starting with simple types, we built increasingly sophisticated type checkers. The Simply-Typed Lambda Calculus showed me how types are essential to modern progamming.
+
+Try to figure out what this means:
 
 ```typescript
-// This makes so much more sense now 
+// This makes so much more sense now
 function compose<A, B, C>(f: (b: B) => C, g: (a: A) => B): (a: A) => C {
   return (x: A) => f(g(x));
 }
 ```
 
-But the real magic happened with parametric polymorphism and System-F. Learning how generic types work mathematically made me understand why certain patterns in React (like higher-order components) feel so natural - they're expressions of deep mathematical principles.
+A, B, and C are all types, we don't care what the types are, we just know they are types. We see that `f` is a function that takes in a varible `b` of type `B` and returns something of type `C`.
+Similarily, g is a function of `A -> B`, notice we still haven't defined the type of `compose`, it is `A -> C`
+Now in the code block we see that we are returning a function that takes in a variable `x` of type `A` and returns `f(g(x))`. From the previous information we know `g` will return something of type `B` and `f` takes that and turns it into type `C`.
+
+Anyways, this is a very convoluted way of proving that a function should return a type. Not practical at all but an interesting exercise.
 
 Subtyping was another eye-opener. Understanding covariance and contravariance finally explained why certain TypeScript errors that seemed arbitrary actually make perfect sense from a type safety perspective.
 
@@ -50,7 +58,7 @@ Continuation-passing style (CPS) initially felt like mental gymnastics, but then
 getData(id, (data) => {
   processData(data, (result) => {
     saveResult(result, (success) => {
-     console.log('Done!');
+      console.log("Done!");
     });
   });
 });

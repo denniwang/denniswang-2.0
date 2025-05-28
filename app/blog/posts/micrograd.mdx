@@ -159,18 +159,7 @@ Training follows the standard pattern:
         p.data += -0.01 * p.grad
         ````
 
-## The Moon Dataset Challenge
-
-The tutorial culminates in training a 2-layer MLP on the classic "moon" dataset - two interleaved half-circles. The network learns to separate them:
-    Network Architecture:
-````
-Input(2) → Hidden(16) → Hidden(16) → Output(1)
-    ````
-
-    Decision Boundary Evolution:
-    Iteration 0:   Random classification
-    Iteration 50:  Basic separation emerging
-    Iteration 200: Clean curved boundary
+It's crazy to think that you can explain modern machine learning concepts with high school calculus and some mental gymastics. 
 
 ## Comparison with PyTorch
 
@@ -250,12 +239,11 @@ def tanh(self):
 
 ## The Learning Journey
 
-Following this tutorial transforms your understanding:
+Following this tutorial transformed my understanding:
 
-1. **Demystification**: Neural networks aren't magic - they're just computational graphs
-2. **Intuition**: You feel gradients flowing through the network
-3. **Debugging**: When PyTorch behaves strangely, you understand why
-4. **Innovation**: You can implement custom operations confidently
+1. Neural networks aren't magic - they're just computational graphs
+2. I felt the gradients flowing through the network
+3. I can implement custom operations confidently
 
 ## Modern Connections
 
