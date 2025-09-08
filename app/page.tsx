@@ -3,8 +3,8 @@ import { Projects } from "./components/projects";
 
 export default function Page() {
   return (
-    <section className="max-w-xl">
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter ">
+    <section>
+      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
         Dennis Wang | Portfolio
       </h1>
       <p className="mb-4">
