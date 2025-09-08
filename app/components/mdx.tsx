@@ -72,7 +72,7 @@ function extractTextContent(children: React.ReactNode): string {
 
 function Code({ children, ...props }) {
   const codeText = extractTextContent(children);
-  console.log("DENIS", codeText);
+  //console.log("DENIS", codeText);
 
   // Don't trim here - preserve whitespace and formatting
   let codeHTML = highlight(codeText);
