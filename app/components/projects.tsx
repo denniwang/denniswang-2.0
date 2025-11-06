@@ -4,24 +4,39 @@ import React from 'react';
 
 const dummyProjects = [
   {
-    name: 'GraduateNU',
-    image: 'graduate.png', // Replace with actual image paths
-    githubLink: 'https://graduatenu.com/',
+    name: "GraduateNU",
+    image: "graduate.png", // Replace with actual image paths
+    githubLink: "https://graduatenu.com/",
   },
   {
-    name: 'Atoma Media',
-    image: 'atoma.png',
-    githubLink: 'https://www.joinatoma.com/',
+    name: "Atoma Media",
+    image: "atoma.png",
+    githubLink: "https://www.joinatoma.com/",
   },
   {
-    name: 'IssueExpress',
-    image: 'issueexpress.png',
-    githubLink: 'https://github.com/denniwang/IssueExpress',
+    name: "T-Error",
+    image: "t-err.png",
+    githubLink: "https://github.com/denniwang/t-error",
   },
   {
-    name: 'T-Error',
-    image: 't-err.png',
-    githubLink: 'https://github.com/denniwang/t-error',
+    name: "Clu.lus",
+    image: "clulus.png",
+    githubLink: "https://github.com/sharvillimaye/clulus",
+  },
+  {
+    name: "DAILP",
+    image: "dailp.png",
+    githubLink: "https://github.com/neu-dsg/dailp-encoding",
+  },
+  {
+    name: "gitsum",
+    image: "gitsum.png",
+    githubLink: "https://www.npmjs.com/package/gitsum-cli",
+  },
+  {
+    name: "IssueExpress",
+    image: "issueexpress.png",
+    githubLink: "https://github.com/denniwang/IssueExpress",
   },
 ];
 
