@@ -8,7 +8,7 @@ export default function Page() {
         Dennis Wang |  Portfolio
       </h1>
       <p className="mb-4">
-        {`My name is Dennis (Yicheng) Wang. I am a 2nd year CS + Business student at Northeastern University. I like programming, playing tennis, and cooking.`}
+        {`My name is Dennis (Yicheng) Wang. I am a 3rd year CS + Business student at Northeastern University. I like programming, playing tennis, and cooking.`}
       </p>
       <div className="my-8">
         <h2 className="mb-8 text-xl font-semibold tracking-tighter">
