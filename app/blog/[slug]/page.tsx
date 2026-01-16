@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
+import { Comments } from 'app/components/comments'
 
 export async function generateStaticParams() {
   let posts = getBlogPosts()
@@ -11,10 +12,11 @@ export async function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  let post = getBlogPosts().find((post) => post.slug === slug)
   if (!post) {
-    return
+    return null
   }
 
   let {
@@ -90,9 +92,10 @@ export default function Blog({ params }) {
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
+      <article className="prose mb-10">
         <CustomMDX source={post.content} />
       </article>
+      <Comments />
     </section>
   )
 }
