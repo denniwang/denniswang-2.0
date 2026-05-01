@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 
-export function BlogPosts() {
+
+type BlogProps = {
+  limit?: number,
+}
+
+export function BlogPosts(props:BlogProps) {
   let allBlogs = getBlogPosts()
 
   return (
@@ -15,10 +20,11 @@ export function BlogPosts() {
           }
           return 1
         })
+        .slice(0,props.limit ?? Infinity) 
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col space-y-1 mb-4  hover:shadow-lg hover:shadow-blue-500/50 transition duration-100 "
+            className="group flex flex-col space-y-1 mb-4 transition-transform duration-200 ease-out hover:translate-x-1"
             href={`/blog/${post.slug}`}
           >
             <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
@@ -27,6 +33,12 @@ export function BlogPosts() {
               </p>
               <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
                 {post.metadata.title}
+                <span
+                  aria-hidden="true"
+                  className="ml-1 inline-block opacity-0 -translate-x-1 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-x-0 text-[#47a3f3]"
+                >
+                  →
+                </span>
               </p>
             </div>
           </Link>

@@ -14,7 +14,7 @@ export default function Page() {
         <h2 className="mb-8 text-xl font-semibold tracking-tighter">
           Blog Posts
         </h2>
-        <BlogPosts />
+        <BlogPosts limit={3} />
       </div>
       <div className="my-8">
         <h2 className="mb-8 text-xl font-semibold tracking-tighter">

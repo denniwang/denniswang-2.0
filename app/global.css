@@ -51,6 +51,12 @@ html {
   @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
 }
 
+.prose a:hover {
+  text-decoration-color: #47a3f3;
+  text-decoration-thickness: 0.15em;
+  text-underline-offset: 3px;
+}
+
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
   content: '#';

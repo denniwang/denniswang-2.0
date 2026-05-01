@@ -6,6 +6,7 @@ function ArrowIcon() {
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
     >
       <path
         d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
@@ -21,24 +22,35 @@ export default function Footer() {
       <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="group flex items-center transition-colors hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/denniwang"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
+            <p className="ml-2 h-7 relative after:pointer-events-none after:absolute after:left-0 after:bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100">github</p>
           </a>
         </li>
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="group flex items-center transition-colors hover:text-neutral-800 dark:hover:text-neutral-100"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.linkedin.com/in/denniswang812/"
+          >
+            <ArrowIcon />
+            <p className="ml-2 h-7 relative after:pointer-events-none after:absolute after:left-0 after:bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100">linkedin</p>
+          </a>
+        </li>
+        <li>
+          <a
+            className="group flex items-center transition-colors hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
             href="https://vercel.com/templates/next.js/portfolio-starter-kit"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">view source</p>
+            <p className="ml-2 h-7 relative after:pointer-events-none after:absolute after:left-0 after:bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100">view source</p>
           </a>
         </li>
       </ul>
