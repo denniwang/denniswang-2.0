@@ -19,10 +19,10 @@ function ArrowIcon() {
 export default function Footer() {
   return (
     <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
+      <ul className="text-muted font-sm mt-8 flex flex-col space-x-0 space-y-2 md:flex-row md:space-x-4 md:space-y-0">
         <li>
           <a
-            className="group flex items-center transition-colors hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="group flex items-center transition-colors hover:text-[var(--fg)]"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/denniwang"
@@ -33,7 +33,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className="group flex items-center transition-colors hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="group flex items-center transition-colors hover:text-[var(--fg)]"
             rel="noopener noreferrer"
             target="_blank"
             href="https://www.linkedin.com/in/denniswang812/"
@@ -44,7 +44,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className="group flex items-center transition-colors hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="group flex items-center transition-colors hover:text-[var(--fg)]"
             rel="noopener noreferrer"
             target="_blank"
             href="https://vercel.com/templates/next.js/portfolio-starter-kit"
@@ -54,7 +54,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <p className="mt-8 text-neutral-600 dark:text-neutral-300">
+      <p className="text-muted mt-8">
         © {new Date().getFullYear()} MIT Licensed
       </p>
     </footer>

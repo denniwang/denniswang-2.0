@@ -26,7 +26,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="group transition-colors hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  className="nav-link group flex align-middle relative py-1 px-2 m-1"
                 >
                   <span className="relative">
                     {name}
